@@ -56,24 +56,48 @@ export default async function Page() {
 }
 
 async function RandomWikiArticle() {
-    const randomWiki = await fetch(randomWikiUrl, {
-        next: { revalidate: revalidateTTL, tags: [tagName] }
-    });
+    try {
+        const randomWiki = await fetch(randomWikiUrl, {
+            // Be explicit to improve compatibility with some proxies/CDNs
+            headers: {
+                accept: 'application/json',
+                // Set a UA to avoid being served an HTML interstitial page
+                'user-agent': 'netlify-next-starter/1.0 (+https://www.netlify.com)'
+            },
+            next: { revalidate: revalidateTTL, tags: [tagName] }
+        });
 
-    const content = await randomWiki.json();
-    let extract = content.extract;
-    if (extract.length > maxExtractLength) {
-        extract = extract.slice(0, extract.slice(0, maxExtractLength).lastIndexOf(' ')) + ' [...]';
+        const contentType = randomWiki.headers.get('content-type') || '';
+        if (!randomWiki.ok || !contentType.includes('application/json')) {
+            throw new Error(`Unexpected response: ${randomWiki.status} ${contentType}`);
+        }
+
+        const content = await randomWiki.json();
+        let extract = content.extract || '';
+        if (extract.length > maxExtractLength) {
+            extract =
+                extract.slice(0, extract.slice(0, maxExtractLength).lastIndexOf(' ')) + ' [...]';
+        }
+
+        return (
+            <Card className="max-w-2xl">
+                <h3 className="text-2xl text-neutral-900">{content.title}</h3>
+                <div className="text-lg font-bold">{content.description}</div>
+                <p className="italic">{extract}</p>
+                <a target="_blank" rel="noopener noreferrer" href={content.content_urls.desktop.page}>
+                    From Wikipedia
+                </a>
+            </Card>
+        );
+    } catch (e) {
+        return (
+            <Card className="max-w-2xl">
+                <h3 className="text-2xl text-neutral-900">Random article unavailable</h3>
+                <p className="italic">
+                    Could not fetch Wikipedia content during build. The page will still deploy,
+                    and content will appear on next successful revalidation.
+                </p>
+            </Card>
+        );
     }
-
-    return (
-        <Card className="max-w-2xl">
-            <h3 className="text-2xl text-neutral-900">{content.title}</h3>
-            <div className="text-lg font-bold">{content.description}</div>
-            <p className="italic">{extract}</p>
-            <a target="_blank" rel="noopener noreferrer" href={content.content_urls.desktop.page}>
-                From Wikipedia
-            </a>
-        </Card>
-    );
 }
