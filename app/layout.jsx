@@ -24,6 +24,16 @@ export const metadata = {
         description:
             '写真とテキストからAIがコマ割り日記を自動生成。思い出をサクッと整理して、かわいく残せるアプリ。',
         images: ['/images/og.svg']
+    },
+    icons: {
+        icon: [
+            { url: '/icons/app-16.png', sizes: '16x16', type: 'image/png' },
+            { url: '/icons/app-32.png', sizes: '32x32', type: 'image/png' }
+        ],
+        apple: '/icons/app-180.png',
+        other: [
+            { rel: 'mask-icon', url: '/favicon.svg', color: '#ec4899' }
+        ]
     }
 };
 
@@ -35,6 +45,12 @@ export default function RootLayout({ children }) {
     return (
         <html lang="ja">
             <head>
+                {/* App icons: add your PNGs in public/icons as named below */}
+                <link rel="apple-touch-icon" sizes="180x180" href="/icons/app-180.png" />
+                <link rel="icon" type="image/png" sizes="32x32" href="/icons/app-32.png" />
+                <link rel="icon" type="image/png" sizes="16x16" href="/icons/app-16.png" />
+                <link rel="manifest" href="/site.webmanifest" />
+                {/* Fallback SVG icon */}
                 <link rel="icon" href="/favicon.svg" sizes="any" />
             </head>
             <body className="antialiased text-neutral-900 bg-pink-50">
