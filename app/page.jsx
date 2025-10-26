@@ -15,14 +15,14 @@ export default function Page() {
 
 function Hero() {
     return (
-        <section className="relative isolate overflow-hidden rounded-2xl px-6 py-12 sm:px-10 sm:py-16 ring-1 ring-white/10 bg-gradient-to-b from-blue-800/60 to-blue-900">
+        <section className="relative isolate overflow-hidden rounded-2xl px-6 py-12 sm:px-10 sm:py-16 ring-1 ring-black/5 bg-gradient-to-b from-pink-100 to-pink-50">
             {/* gradient blobs */}
-            <div className="pointer-events-none absolute -left-16 -top-24 -z-10 h-72 w-72 rounded-full bg-cyan-500/30 blur-3xl" />
-            <div className="pointer-events-none absolute -right-24 -bottom-24 -z-10 h-80 w-80 rounded-full bg-indigo-500/25 blur-3xl" />
-            <div className="absolute inset-0 -z-10 opacity-20" style={{ backgroundImage: 'url(/images/grid-bg.svg)', backgroundSize: 'cover' }} />
+            <div className="pointer-events-none absolute -left-16 -top-24 -z-10 h-72 w-72 rounded-full bg-pink-300/30 blur-3xl" />
+            <div className="pointer-events-none absolute -right-24 -bottom-24 -z-10 h-80 w-80 rounded-full bg-rose-300/25 blur-3xl" />
+            <div className="absolute inset-0 -z-10 opacity-10" style={{ backgroundImage: 'url(/images/grid-bg.svg)', backgroundSize: 'cover' }} />
             <div className="grid items-center gap-10 sm:grid-cols-2">
                 <div>
-                    <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-white/70">
+                    <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-600">
                         <Sparkle className="size-4" /> 配信中
                     </p>
                     <h1 className="gradient-text mb-4">コマ日記 — 思い出が、物語になる。</h1>
@@ -93,7 +93,7 @@ function Steps() {
             <div className="grid gap-4 sm:grid-cols-3">
                 {steps.map((s) => (
                     <div key={s.n} className="card">
-                        <div className="mb-2 text-sm font-bold text-white/70">STEP {s.n}</div>
+                        <div className="mb-2 text-sm font-bold text-neutral-600">STEP {s.n}</div>
                         <h3 className="mb-1 font-semibold">{s.t}</h3>
                         <p className="text-sm opacity-90">{s.d}</p>
                     </div>

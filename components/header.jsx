@@ -9,7 +9,7 @@ const navItems = [
 
 export function Header() {
     return (
-        <div className="sticky top-0 z-50 pt-6 sm:pt-8">
+        <div className="sticky top-0 z-50 pt-4 sm:pt-6">
             <nav className="glass mx-auto flex w-full max-w-5xl items-center justify-between rounded-full px-4 py-2 sm:px-6">
                 <Link href="/" className="no-underline">
                     <span className="gradient-text text-lg font-extrabold tracking-tight">コマ日記</span>
@@ -20,7 +20,7 @@ export function Header() {
                             <li key={index}>
                                 <Link
                                     href={item.href}
-                                    className="no-underline rounded-full px-3 py-1.5 text-sm text-white/90 transition hover:bg-white/5"
+                                    className="no-underline rounded-full px-3 py-1.5 text-sm text-neutral-700 transition hover:bg-black/5"
                                 >
                                     {item.linkText}
                                 </Link>

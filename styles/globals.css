@@ -3,10 +3,11 @@
 @import 'tailwindcss';
 
 @theme {
+    /* Light, friendly background noise with pink tint */
     --background-image-noise: linear-gradient(
             to bottom,
-            color-mix(in oklab, var(--color-neutral-950) 0%, transparent),
-            color-mix(in oklab, var(--color-neutral-950) 100%, transparent)
+            color-mix(in oklab, var(--color-pink-100) 40%, transparent),
+            color-mix(in oklab, var(--color-pink-100) 40%, transparent)
         ),
         url('/images/noise.png');
     /* Brand colors */
@@ -43,12 +44,13 @@
 @layer components {
     /* Modern UI helpers */
     .glass {
-        @apply backdrop-blur-xl bg-white/5 ring-1 ring-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.25)];
+        /* Light-mode glass: subtle white card with soft ring */
+        @apply backdrop-blur-xl bg-white/70 ring-1 ring-black/5 shadow-[0_8px_24px_rgba(0,0,0,0.08)];
     }
 
     .card {
         /* duplicate glass utilities (cannot @apply custom classes) */
-        @apply backdrop-blur-xl bg-white/5 ring-1 ring-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.25)] rounded-xl p-5;
+        @apply backdrop-blur-xl bg-white/70 ring-1 ring-black/5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] rounded-xl p-5;
     }
 
     .gradient-text {
@@ -59,20 +61,20 @@
     }
 
     .btn-outline {
-        @apply inline-flex items-center justify-center gap-2 font-bold text-center no-underline transition-colors cursor-pointer bg-transparent text-white ring-1 ring-white/20;
+        @apply inline-flex items-center justify-center gap-2 font-bold text-center no-underline transition-colors cursor-pointer bg-transparent text-neutral-800 ring-1 ring-black/10;
         padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
         font-size: var(--btn-font-size, 0.875rem);
         border-radius: var(--btn-border-radius, 0.25rem);
-        &:hover { @apply bg-white/5; }
+        &:hover { @apply bg-black/5; }
         &:disabled { @apply cursor-default text-neutral-400 bg-transparent; }
     }
 
     .btn-ghost {
-        @apply inline-flex items-center justify-center gap-2 font-bold text-center no-underline transition-colors cursor-pointer bg-transparent text-white;
+        @apply inline-flex items-center justify-center gap-2 font-bold text-center no-underline transition-colors cursor-pointer bg-transparent text-neutral-800;
         padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
         font-size: var(--btn-font-size, 0.875rem);
         border-radius: var(--btn-border-radius, 0.25rem);
-        &:hover { @apply bg-white/5; }
+        &:hover { @apply bg-black/5; }
     }
 
     @keyframes fade-in-up {
