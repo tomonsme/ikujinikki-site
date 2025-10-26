@@ -4,14 +4,36 @@ import { Header } from '../components/header';
 
 export const metadata = {
     title: {
-        template: '%s | Netlify',
-        default: 'Netlify Starter'
+        template: '%s | コマ日記',
+        default: 'コマ日記'
+    },
+    description:
+        '写真とテキストからAIがコマ割り日記を自動生成。思い出をサクッと整理して、かわいく残せるアプリ「コマ日記」。',
+    metadataBase: new URL('https://example.com'),
+    openGraph: {
+        title: 'コマ日記',
+        description:
+            '写真とテキストからAIがコマ割り日記を自動生成。思い出をサクッと整理して、かわいく残せるアプリ。',
+        type: 'website',
+        url: 'https://example.com',
+        images: [{ url: '/images/og.svg', width: 1200, height: 630, alt: 'コマ日記' }]
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'コマ日記',
+        description:
+            '写真とテキストからAIがコマ割り日記を自動生成。思い出をサクッと整理して、かわいく残せるアプリ。',
+        images: ['/images/og.svg']
     }
+};
+
+export const viewport = {
+    themeColor: '#0b1743'
 };
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
+        <html lang="ja">
             <head>
                 <link rel="icon" href="/favicon.svg" sizes="any" />
             </head>
